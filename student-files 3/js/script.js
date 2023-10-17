@@ -78,10 +78,10 @@ function formatPhoneNumber(phone) {
 
 // Function to format the birthday
 function formatBirthday(date) {
-  const parts = date.split('T')[0].split('-');
-  const year = parts[0];
-  const month = parts[1];
-  const day = parts[2];
+  const bday = date.split('T')[0].split('-');
+  const year = bday[0];
+  const month = bday[1];
+  const day = bday[2];
   return `${month}/${day}/${year}`;
 }
 
