@@ -1,6 +1,5 @@
 // Define constants and variables
 const gallery = document.getElementById('gallery');
-const modalContainer = document.querySelector('.modal-container');
 let users = [];
 
 // Function to display the overlay with user information
@@ -8,6 +7,9 @@ function displayOverlay(user) {
   if (user) {
     const formattedPhone = formatPhoneNumber(user.cell);
     const formattedBirthday = formatBirthday(user.dob.date);
+
+    const modalContainer = document.createElement('div');
+    modalContainer.className = 'modal-container';
 
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
@@ -21,7 +23,7 @@ function displayOverlay(user) {
           <p class="modal-text">${user.email}</p>
           <p class="modal-text cap">${user.location.city}</p>
           <hr>
-          <p class "modal-text">${formattedPhone}</p>
+          <p class="modal-text">${formattedPhone}</p>
           <p class="modal-text">${user.location.street.number} ${user.location.street.name}, ${user.location.state}, ${user.location.postcode}</p>
           <p class="modal-text">Birthday: ${formattedBirthday}</p>
         </div>
@@ -29,15 +31,16 @@ function displayOverlay(user) {
     `;
 
     overlay.addEventListener('click', () => {
-      overlay.style.display = 'none';
+      modalContainer.style.display = 'none'; // Hide the modal container
     });
 
     const closeButton = overlay.querySelector('#modal-close-btn');
     closeButton.addEventListener('click', () => {
-      overlay.style.display = 'none';
+      modalContainer.style.display = 'none'; // Hide the modal container
     });
 
-    document.body.appendChild(overlay);
+    modalContainer.appendChild(overlay); // Append overlay to modalContainer
+    document.body.appendChild(modalContainer); // Append modalContainer to body
   }
 }
 
